@@ -1,7 +1,5 @@
 package com.tsystems.javaschool.tasks.subsequence;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Subsequence {
@@ -10,7 +8,7 @@ public class Subsequence {
      * Checks if it is possible to get a sequence which is equal to the first
      * one by removing some elements from the second one.
      *
-     * @param list2 first sequence
+     * @param list1 first sequence
      * @param list2 second sequence
      * @return <code>true</code> if possible, otherwise <code>false</code>
      */
@@ -30,6 +28,7 @@ public class Subsequence {
                     list1pos++;
             }
         }
+
 
         return list1pos == list1.size();
     }

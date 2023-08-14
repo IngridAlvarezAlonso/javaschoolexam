@@ -8,14 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Spreadsheet {
-    private final String REGEX_LETTER = "([A-Z])";
-    private final String REGEX_NUMBER = "([1-9])";
     private final String REGEX_CELL = "^=([A-Z])([0-9])$";
     private final String REGEX_OPERATION = "^=(([A-Z][1-9])|[0-9]+)(\\+|\\-|\\*|\\/)(([A-Z][1-9])|[0-9]+)";
     private final String REGEX_TEXT = "^'.+";
     private final String REGEX_FORMULA = "(^=|^')";
     private final String REGEX_IS_NUMERIC = "[0-9]+";
-    private HashMap<Character, Integer> letters;
+    private final HashMap<Character, Integer> letters;
 
     public Spreadsheet(){
         letters = new HashMap<>();
@@ -61,9 +59,8 @@ public class Spreadsheet {
 
         List<List<String>> originaltable = fillTable(inputData);
         List<List<String>> valuesTable = calculateValues(originaltable);
-        List<String> finalTable = createFinalTable(valuesTable);
 
-        return finalTable;
+        return createFinalTable(valuesTable);
     }
 
     private List<String> createFinalTable(List<List<String>> valuesTable) {
@@ -86,7 +83,7 @@ public class Spreadsheet {
         List<List<String>> table = new ArrayList<>();
 
         for(String row : inputData) {
-            List<String> columns = new ArrayList<>();
+            List<String> columns;
             columns = Arrays.asList(row.split(" "));
             table.add(columns);
         }
@@ -119,7 +116,6 @@ public class Spreadsheet {
             int numColumn = Character.getNumericValue(cell.charAt(2))-1; //I rest 1 because Java arrays begin in "0" index.
             cell = valuesTable.get(numRow).get(numColumn);
         }else if(matcherRegexOperation.find()){
-            String operation = matcherRegexOperation.group(0);
             String operand1 = matcherRegexOperation.group(2);
             String operator = matcherRegexOperation.group(3);
             String operand2 = matcherRegexOperation.group(4);
@@ -128,6 +124,7 @@ public class Spreadsheet {
                 operand1 = calculateValue("="+operand1, valuesTable);
             if (!operand2.matches(REGEX_IS_NUMERIC))
                 operand2 = calculateValue("="+operand2, valuesTable);
+
 
             Integer operand1Int = Integer.parseInt(operand1);
             Integer operand2Int = Integer.parseInt(operand2);

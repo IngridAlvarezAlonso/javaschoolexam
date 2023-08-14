@@ -1,11 +1,7 @@
 package com.tsystems.javaschool.tasks.calculator;
 
 import org.apache.commons.lang3.StringUtils;
-import java.beans.Expression;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,10 +24,11 @@ public class Calculator {
 
         String resultStatement = statement;
         String resultExit;
-        boolean operationFounded = false;
+        boolean operationFounded;
 
         if(null == resultStatement)
             return null;
+
 
         Pattern pattern = Pattern.compile("--+");
         Matcher matcher = pattern.matcher(resultStatement);
@@ -122,20 +119,24 @@ public class Calculator {
 //                result = operand1Bd.subtract(operand2Bd);
 //            }
 
-            if (operator.equals("*")) {
-                result = operand1Bd * operand2Bd;
-            } else if (operator.equals("/")) {
-                result = operand1Bd / operand2Bd;
-            } else if (operator.equals("+")) {
-                result = operand1Bd + operand2Bd;
-            } else if (operator.equals("-")) {
-                result = operand1Bd - operand2Bd;
+            switch (operator) {
+                case "*":
+                    result = operand1Bd * operand2Bd;
+                    break;
+                case "/":
+                    result = operand1Bd / operand2Bd;
+                    break;
+                case "+":
+                    result = operand1Bd + operand2Bd;
+                    break;
+                case "-":
+                    result = operand1Bd - operand2Bd;
+                    break;
             }
 
             String stringValue = String.valueOf(result);
-            String trimmedValue = stringValue.replaceAll("\\.?0*$", "");
 
-            return trimmedValue;
+            return stringValue.replaceAll("\\.?0*$", "");
 
 //            if (result.scale() <= 0) {
 //                return result.toBigInteger().toString();
