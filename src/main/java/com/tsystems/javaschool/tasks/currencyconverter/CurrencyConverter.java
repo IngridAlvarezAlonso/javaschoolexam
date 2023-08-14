@@ -10,7 +10,7 @@ public class CurrencyConverter {
      * @return converted value
      */
     public String convert(double dollarToEuroRate, String statement) {
-        // TODO: Implement the logic here
+
         return "";
     }
 }

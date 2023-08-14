@@ -15,6 +15,19 @@ public class SubsequenceTest {
     private Subsequence subsequence = new Subsequence();
 
     @Test
+    public void findMine() {
+        //given
+        List x = Stream.of(1, 3, 5, 7, 9).collect(toList());
+        List y = Stream.of(1, 2, 3, 4, 5, 7, 9, 20).collect(toList());
+
+        //run
+        boolean result = subsequence.find(x, y);
+
+        //assert
+        Assert.assertTrue(result);
+    }
+
+    @Test
     public void find0() {
         //given
         List x = Stream.of(1, 3, 5, 7, 9).collect(toList());
@@ -90,6 +103,19 @@ public class SubsequenceTest {
         //given
         List x = Stream.of("B", "A", "D", "C").collect(toList());
         List y = Stream.of("BD", "A", "ABC", "B", "M", "D", "M", "C", "DC", "D").collect(toList());
+
+        //run
+        boolean result = subsequence.find(x, y);
+
+        //assert
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void findMineLetters() {
+        //given
+        List x = Stream.of("B", "A", "D", "C").collect(toList());
+        List y = Stream.of("Z", "F", "B", "M", "D", "M", "C", "Q", "D").collect(toList());
 
         //run
         boolean result = subsequence.find(x, y);
