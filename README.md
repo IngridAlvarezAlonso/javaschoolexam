@@ -12,7 +12,7 @@ The exam includes 3 tasks to be done. Please, choose 3 of 5: [Calculator](/tasks
 ### Result ###
 
 * Author name : Ingrid Alvarez Alonso
-* Pipeline status: https://bitbucket.org/ingridalvarezalonso/javaschoolexam/pipelines/results/4
+* Pipeline status: [![build](https://github.com/IngridAlvarezAlonso/javaschoolexam/actions/workflows/maven.yml/badge.svg?branch=master&event=push)](https://github.com/IngridAlvarezAlonso/javaschoolexam/actions/workflows/maven.yml)
 
 
 ### How to start?  ###
